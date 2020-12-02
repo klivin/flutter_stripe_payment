@@ -15,6 +15,7 @@ class Token {
       this.extra});
 
   factory Token.fromJson(Map<dynamic, dynamic> json) {
+    if (json == null) return null;
     return Token(
       bankAccount: json['bankAccount'] != null
           ? BankAccount.fromJson(json['bankAccount'])
@@ -70,6 +71,8 @@ class BankAccount {
       this.routingNumber});
 
   factory BankAccount.fromJson(Map<dynamic, dynamic> json) {
+    if (json == null) return null;
+
     return BankAccount(
       accountHolderName: json['accountHolderName'],
       accountHolderType: json['accountHolderType'],
@@ -139,6 +142,8 @@ class CreditCard {
       this.name});
 
   factory CreditCard.fromJson(Map<dynamic, dynamic> json) {
+    if (json == null) return null;
+
     return CreditCard(
         addressCity: json['addressCity'],
         addressCountry: json['addressCountry'],
@@ -190,6 +195,8 @@ class Extra {
   Extra({this.shippingContact, this.billingContact});
 
   factory Extra.fromJson(Map<dynamic, dynamic> json) {
+    if (json == null) return null;
+
     return Extra(
       shippingContact: Contact.fromJson(json['shippingContact']),
       billingContact: Contact.fromJson(json['billingContact']),
@@ -235,7 +242,7 @@ class Contact {
       this.supplementarySubLocality});
 
   factory Contact.fromJson(Map<dynamic, dynamic> json) {
-    print(json);
+    if (json == null) return null;
     return Contact(
       name: json['name'] ?? "",
       emailAddress: json['emailAddress'] ?? "",
