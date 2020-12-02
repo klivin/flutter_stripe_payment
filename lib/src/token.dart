@@ -6,13 +6,23 @@ class Token {
   String tokenId;
   Extra extra;
 
-  Token({this.bankAccount, this.card, this.created, this.livemode, this.tokenId, this.extra});
+  Token(
+      {this.bankAccount,
+      this.card,
+      this.created,
+      this.livemode,
+      this.tokenId,
+      this.extra});
 
   factory Token.fromJson(Map<dynamic, dynamic> json) {
     return Token(
-      bankAccount: json['bankAccount'] != null ? BankAccount.fromJson(json['bankAccount']) : null,
+      bankAccount: json['bankAccount'] != null
+          ? BankAccount.fromJson(json['bankAccount'])
+          : null,
       card: json['card'] != null ? CreditCard.fromJson(json['card']) : null,
-      created: json['created'] is int ? (json['created'] as int).toDouble() : json['created'],
+      created: json['created'] is int
+          ? (json['created'] as int).toDouble()
+          : json['created'],
       livemode: json['livemode'],
       tokenId: json['tokenId'],
       extra: json['extra'] != null ? Extra.fromJson(json['extra']) : null,
@@ -75,8 +85,10 @@ class BankAccount {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.accountHolderName != null) data['accountHolderName'] = this.accountHolderName;
-    if (this.accountHolderType != null) data['accountHolderType'] = this.accountHolderType;
+    if (this.accountHolderName != null)
+      data['accountHolderName'] = this.accountHolderName;
+    if (this.accountHolderType != null)
+      data['accountHolderType'] = this.accountHolderType;
     if (this.accountNumber != null) data['accountNumber'] = this.accountNumber;
     if (this.bankName != null) data['bankName'] = this.bankName;
     if (this.countryCode != null) data['countryCode'] = this.countryCode;
@@ -150,7 +162,8 @@ class CreditCard {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     if (this.addressCity != null) data['addressCity'] = this.addressCity;
-    if (this.addressCountry != null) data['addressCountry'] = this.addressCountry;
+    if (this.addressCountry != null)
+      data['addressCountry'] = this.addressCountry;
     data['addressLine1'] = this.addressLine1;
     data['addressLine2'] = this.addressLine2;
     if (this.addressState != null) data['addressState'] = this.addressState;
@@ -174,9 +187,7 @@ class Extra {
   Contact shippingContact;
   Contact billingContact;
 
-  Extra(
-      {this.shippingContact,
-      this.billingContact});
+  Extra({this.shippingContact, this.billingContact});
 
   factory Extra.fromJson(Map<dynamic, dynamic> json) {
     return Extra(
@@ -187,8 +198,10 @@ class Extra {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.shippingContact != null) data['shippingContact'] = this.shippingContact.toJson();
-    if (this.billingContact != null) data['billingContact'] = this.billingContact.toJson();
+    if (this.shippingContact != null)
+      data['shippingContact'] = this.shippingContact.toJson();
+    if (this.billingContact != null)
+      data['billingContact'] = this.billingContact.toJson();
     return data;
   }
 }
@@ -207,7 +220,7 @@ class Contact {
   String subLocality;
   String supplementarySubLocality;
 
-  Contact (
+  Contact(
       {this.name,
       this.emailAddress,
       this.phoneNumber,
@@ -219,8 +232,7 @@ class Contact {
       this.isoCountryCode,
       this.subAdministrativeArea,
       this.subLocality,
-      this.supplementarySubLocality
-      });
+      this.supplementarySubLocality});
 
   factory Contact.fromJson(Map<dynamic, dynamic> json) {
     print(json);
@@ -232,7 +244,8 @@ class Contact {
       postalCode: json['postalCode'] ?? "",
       state: json['state'] ?? json['administrativeArea'] ?? "",
       city: json['city'] ?? json['locality'] ?? "",
-      street: json['street'] ?? json['address1'] != null ? json['address1'] + json['address2'] : "",
+      street: json['street'] ??
+          (json['address1'] != null ? json['address1'] + json['address2'] : ""),
       isoCountryCode: json['ISOCountryCode'] ?? json['countryCode'] ?? "",
       subAdministrativeArea: json['subAdministrativeArea'] ?? "",
       subLocality: json['subLocality'] ?? json['locality'] ?? "",
@@ -250,10 +263,13 @@ class Contact {
     if (this.state != null) data['state'] = this.state;
     if (this.city != null) data['city'] = this.city;
     if (this.street != null) data['street'] = this.street;
-    if (this.isoCountryCode != null) data['ISOCountryCode'] = this.isoCountryCode;
-    if (this.subAdministrativeArea != null) data['subAdministrativeArea'] = this.subAdministrativeArea;
+    if (this.isoCountryCode != null)
+      data['ISOCountryCode'] = this.isoCountryCode;
+    if (this.subAdministrativeArea != null)
+      data['subAdministrativeArea'] = this.subAdministrativeArea;
     if (this.subLocality != null) data['subLocality'] = this.subLocality;
-    if (this.supplementarySubLocality != null) data['supplementarySubLocality'] = this.supplementarySubLocality;
+    if (this.supplementarySubLocality != null)
+      data['supplementarySubLocality'] = this.supplementarySubLocality;
     return data;
   }
 }
